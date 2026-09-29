@@ -12,26 +12,24 @@ app.use(express.json());
 
 console.log("SERVER FILE LOADED");
 
-// Health check
-app.get("/test", (req, res) => {
-  console.log("GET /test called");
 
-  res.status(200).json({
-    success: true,
-    message: "Server is running",
-  });
-});
 
-// Log every API request
 app.use((req, res, next) => {
   console.log(`Request: ${req.method} ${req.originalUrl}`);
   next();
 });
 
-// API routes
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Expense Tracker API is running",
+  });
+});
+
+
 app.use("/api", Routes);
 
-// Handle unknown routes
+
 app.use((req, res) => {
   console.log(`404: Route not found - ${req.method} ${req.originalUrl}`);
 
