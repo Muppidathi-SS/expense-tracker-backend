@@ -8,9 +8,6 @@ const isProduction = process.env.DB_MODE === "production";
 const pool = isProduction
   ? new Pool({
       connectionString: process.env.DATABASE_URL,
-      ssl: {
-        rejectUnauthorized: false,
-      },
     })
   : new Pool({
       host: process.env.DB_HOST,

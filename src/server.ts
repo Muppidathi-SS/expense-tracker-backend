@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { getTest } from "./controllers/test.controller";
+import Routes from "./routes/routes";
 
 dotenv.config();
 
@@ -12,15 +12,36 @@ app.use(express.json());
 
 console.log("SERVER FILE LOADED");
 
+// Health check
 app.get("/test", (req, res) => {
-  res.json({
-    message: "Test route working",
+  console.log("GET /test called");
+
+  res.status(200).json({
+    success: true,
+    message: "Server is running",
   });
 });
 
-app.get("/api/testing", getTest);
+// Log every API request
+app.use((req, res, next) => {
+  console.log(`Request: ${req.method} ${req.originalUrl}`);
+  next();
+});
 
-console.log("API ROUTE REGISTERED: GET /api/testing");
+// API routes
+app.use("/api", Routes);
+
+// Handle unknown routes
+app.use((req, res) => {
+  console.log(`404: Route not found - ${req.method} ${req.originalUrl}`);
+
+  res.status(404).json({
+    success: false,
+    message: "API route not found",
+    method: req.method,
+    path: req.originalUrl,
+  });
+});
 
 const PORT = process.env.PORT || 5000;
 
