@@ -1,12 +1,8 @@
 import pool from "../config/db";
+import { CREATE_GUEST_QUERY } from "../queries/query";
 
 export const createGuest = async (name: string) => {
-  const result = await pool.query(
-    `INSERT INTO guest_users (name)
-     VALUES ($1)
-     RETURNING guest_id, name`,
-    [name],
-  );
+  const result = await pool.query(CREATE_GUEST_QUERY, [name]);
 
   return result.rows[0];
 };
