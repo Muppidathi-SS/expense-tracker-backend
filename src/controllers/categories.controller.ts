@@ -2,12 +2,11 @@ import { Request, Response } from "express";
 import { createCategory } from "../services/categories.service";
 
 export const createCategoryController = async (req: Request, res: Response) => {
-  const { guest_id, category_name, category_description } = req.body;
+  const { guest_id, category_id } = req.body;
   try {
     const result = await createCategory({
       guest_id,
-      category_name,
-      category_description,
+      category_id,
     });
     return res.status(201).json({
       success: true,

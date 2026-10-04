@@ -5,9 +5,9 @@ export const createPaymentMethodController = async (
   req: Request,
   res: Response,
 ) => {
-  const { guest_id, payment_name } = req.body;
+  const { guest_id, payment_method_id } = req.body;
   try {
-    const result = await createPayementMethod({ guest_id, payment_name });
+    const result = await createPayementMethod({ guest_id, payment_method_id });
     return res.status(201).json({
       success: true,
       message: "Payement Method created successfully",

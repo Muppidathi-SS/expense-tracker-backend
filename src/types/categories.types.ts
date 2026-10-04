@@ -1,5 +1,4 @@
 export interface Category {
   guest_id: string;
-  category_name: string;
-  category_description: string;
+  category_id: number;
 }

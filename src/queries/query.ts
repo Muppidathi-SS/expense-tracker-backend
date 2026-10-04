@@ -5,13 +5,13 @@ export const CREATE_GUEST_QUERY = `
 `;
 
 export const CREATE_CATEGORY_QUERY = `
- INSERT INTO categories (guest_id, category_name, category_description)
- VALUES($1, $2, $3)
+ INSERT INTO guest_categories (guest_id, category_id)
+ VALUES($1, $2)
  RETURNING *
 `;
 
 export const CREATE_PAYMENT_METHOD_QUERY = `
- INSERT INTO payment_methods (guest_id, payment_method_name)
+ INSERT INTO guest_payment_methods (guest_id, payment_method_id)
  VALUES ($1, $2)
  RETURNING *
 `;
