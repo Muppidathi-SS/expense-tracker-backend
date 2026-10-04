@@ -49,10 +49,36 @@ WHERE gc.guest_id = $1;
 
 export const GET_PAYMENT_METHODS_BY_GUEST_ID_QUERY = `
 SELECT
-  p.payment_id,
-  p.payment_name,
+  p.payment_method_id,
+  p.payment_method_name
 FROM payment_methods p
 INNER JOIN guest_payment_methods gp
-  ON p.payment_id = gp.payment_id
+  ON p.payment_method_id = gp.payment_method_id
 WHERE gp.guest_id = $1
+`;
+
+export const GET_EXPENSES = `
+SELECT
+    e.*,
+    c.category_name,
+    pm.payment_method_name
+FROM expenses e
+LEFT JOIN categories c
+    ON e.category_id = c.category_id
+LEFT JOIN payment_methods pm
+    ON e.payment_method_id = pm.payment_method_id
+WHERE e.guest_id = $1;
+`;
+
+export const GET_INCOMES = `
+SELECT
+    i.*,
+    c.category_name,
+    pm.payment_method_name
+FROM incomes i
+LEFT JOIN categories c
+    ON i.category_id = c.category_id
+LEFT JOIN payment_methods pm
+    ON i.payment_method_id = pm.payment_method_id
+WHERE i.guest_id = $1;
 `;

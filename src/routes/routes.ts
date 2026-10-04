@@ -1,6 +1,9 @@
 import { Router } from "express";
 import { createGuestController } from "../controllers/guest.controller";
-import { createExpenseController } from "../controllers/expense.controller";
+import {
+  createExpenseController,
+  getExpensesController,
+} from "../controllers/expense.controller";
 import {
   createCategoryController,
   getAllCategoriesByGuestIdController,
@@ -11,7 +14,10 @@ import {
   getAllPaymentMethodsByGuestIdController,
   getAllPaymentMethodsController,
 } from "../controllers/payment-methods.controller";
-import { createIncomeController } from "../controllers/income.controller";
+import {
+  createIncomeController,
+  getIncomesController,
+} from "../controllers/income.controller";
 
 const router = Router();
 
@@ -28,5 +34,7 @@ router.get(
   "/guests/:guest_id/payment-methods",
   getAllPaymentMethodsByGuestIdController,
 );
+router.get("/guests/:guest_id/expenses", getExpensesController);
+router.get("/guests/:guest_id/incomes", getIncomesController);
 
 export default router;
