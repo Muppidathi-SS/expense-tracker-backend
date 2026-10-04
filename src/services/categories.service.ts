@@ -1,5 +1,5 @@
 import pool from "../config/db";
-import { CREATE_CATEGORY_QUERY } from "../queries/query";
+import { CREATE_CATEGORY_QUERY, GET_ALL_CATEGORIES } from "../queries/query";
 import { Category } from "../types/categories.types";
 
 export const createCategory = async (category: Category) => {
@@ -9,4 +9,9 @@ export const createCategory = async (category: Category) => {
     category_id,
   ]);
   return result.rows[0];
+};
+
+export const getAllCategories = async () => {
+  const result = await pool.query(GET_ALL_CATEGORIES);
+  return result.rows;
 };

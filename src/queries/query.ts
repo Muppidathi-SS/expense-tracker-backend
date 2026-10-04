@@ -27,3 +27,11 @@ export const CREATE_INCOME_QUERY = `
  VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
  RETURNING *
 `;
+
+export const GET_ALL_CATEGORIES = `
+ SELECT * FROM categories;
+`;
+
+export const GET_ALL_PAYMENT_METHODS = `
+ SELECT * FROM payment_methods;
+`;

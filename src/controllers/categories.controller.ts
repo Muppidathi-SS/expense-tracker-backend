@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
-import { createCategory } from "../services/categories.service";
+import {
+  createCategory,
+  getAllCategories,
+} from "../services/categories.service";
 
 export const createCategoryController = async (req: Request, res: Response) => {
   const { guest_id, category_id } = req.body;
@@ -11,6 +14,26 @@ export const createCategoryController = async (req: Request, res: Response) => {
     return res.status(201).json({
       success: true,
       message: "Category created successfully",
+      data: result,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
+
+export const getAllCategoriesController = async (
+  req: Request,
+  res: Response,
+) => {
+  try {
+    const result = await getAllCategories();
+    return res.status(201).json({
+      success: true,
+      message: "Category fetched successfully",
       data: result,
     });
   } catch (error) {
