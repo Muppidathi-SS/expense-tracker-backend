@@ -3,6 +3,7 @@ import { createGuestController } from "../controllers/guest.controller";
 import { createExpenseController } from "../controllers/expense.controller";
 import {
   createCategoryController,
+  getAllCategoriesByGuestIdController,
   getAllCategoriesController,
 } from "../controllers/categories.controller";
 import {
@@ -14,11 +15,13 @@ import { createIncomeController } from "../controllers/income.controller";
 const router = Router();
 
 router.post("/guests", createGuestController);
-router.post("/add-expense", createExpenseController);
-router.post("/add-income", createIncomeController);
-router.post("/add-category", createCategoryController);
-router.post("/add-payment-method", createPaymentMethodController);
-router.get("/getAllCategories", getAllCategoriesController);
-router.get("/getAllPaymentMethods", getAllPaymentMethodsController);
+router.post("/expense", createExpenseController);
+router.post("/income", createIncomeController);
+router.post("/category", createCategoryController);
+router.post("/payment-method", createPaymentMethodController);
+
+router.get("/categories", getAllCategoriesController);
+router.get("/paymentMethods", getAllPaymentMethodsController);
+router.get("/guests/:guest_id/categories",getAllCategoriesByGuestIdController)
 
 export default router;

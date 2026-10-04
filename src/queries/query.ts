@@ -35,3 +35,14 @@ export const GET_ALL_CATEGORIES = `
 export const GET_ALL_PAYMENT_METHODS = `
  SELECT * FROM payment_methods;
 `;
+
+export const GET_CATEGORIES_BY_GUEST_ID_QUERY = `
+SELECT
+  c.category_id,
+  c.category_name,
+  c.category_description
+FROM guest_categories gc
+INNER JOIN categories c
+  ON gc.category_id = c.category_id
+WHERE gc.guest_id = $1;
+`;
