@@ -8,6 +8,7 @@ import {
 } from "../controllers/categories.controller";
 import {
   createPaymentMethodController,
+  getAllPaymentMethodsByGuestIdController,
   getAllPaymentMethodsController,
 } from "../controllers/payment-methods.controller";
 import { createIncomeController } from "../controllers/income.controller";
@@ -22,6 +23,10 @@ router.post("/payment-method", createPaymentMethodController);
 
 router.get("/categories", getAllCategoriesController);
 router.get("/paymentMethods", getAllPaymentMethodsController);
-router.get("/guests/:guest_id/categories",getAllCategoriesByGuestIdController)
+router.get("/guests/:guest_id/categories", getAllCategoriesByGuestIdController);
+router.get(
+  "/guests/:guest_id/payment-methods",
+  getAllPaymentMethodsByGuestIdController,
+);
 
 export default router;

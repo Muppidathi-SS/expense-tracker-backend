@@ -1,5 +1,9 @@
 import pool from "../config/db";
-import { CREATE_PAYMENT_METHOD_QUERY, GET_ALL_PAYMENT_METHODS } from "../queries/query";
+import {
+  CREATE_PAYMENT_METHOD_QUERY,
+  GET_ALL_PAYMENT_METHODS,
+  GET_PAYMENT_METHODS_BY_GUEST_ID_QUERY,
+} from "../queries/query";
 import { PaymentMethod } from "../types/payment-methods.types";
 
 export const createPayementMethod = async (payment_method: PaymentMethod) => {
@@ -8,10 +12,17 @@ export const createPayementMethod = async (payment_method: PaymentMethod) => {
     guest_id,
     payment_method_id,
   ]);
-  return result.rows[0]
+  return result.rows[0];
 };
 
 export const getAllPaymentMethods = async () => {
   const result = await pool.query(GET_ALL_PAYMENT_METHODS);
+  return result.rows;
+};
+
+export const getAllPaymentMethodsById = async (guest_id: string) => {
+  const result = await pool.query(GET_PAYMENT_METHODS_BY_GUEST_ID_QUERY, [
+    guest_id,
+  ]);
   return result.rows;
 };

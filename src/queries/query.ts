@@ -46,3 +46,13 @@ INNER JOIN categories c
   ON gc.category_id = c.category_id
 WHERE gc.guest_id = $1;
 `;
+
+export const GET_PAYMENT_METHODS_BY_GUEST_ID_QUERY = `
+SELECT
+  p.payment_id,
+  p.payment_name,
+FROM payment_methods p
+INNER JOIN guest_payment_methods gp
+  ON p.payment_id = gp.payment_id
+WHERE gp.guest_id = $1
+`;
