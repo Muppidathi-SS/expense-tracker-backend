@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { createGuest } from "../services/guest.service";
+import { handleError } from "../utils/error-handler";
 
 export const createGuestController = async (req: Request, res: Response) => {
   try {
@@ -17,10 +18,6 @@ export const createGuestController = async (req: Request, res: Response) => {
       data: guest,
     });
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      success: false,
-      message: "Internal server error",
-    });
+    return handleError(error, res);
   }
 };

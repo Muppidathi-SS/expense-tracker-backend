@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { createExpense } from "../services/expense.service";
+import { handleError } from "../utils/error-handler";
 
 export const createExpenseController = async (req: Request, res: Response) => {
   try {
@@ -30,10 +31,6 @@ export const createExpenseController = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      success: false,
-      message: "Internal server error",
-    });
+    return handleError(error, res);
   }
 };

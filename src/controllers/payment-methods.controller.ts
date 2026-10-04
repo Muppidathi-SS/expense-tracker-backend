@@ -3,6 +3,7 @@ import {
   createPayementMethod,
   getAllPaymentMethods,
 } from "../services/payment-methods.service";
+import { handleError } from "../utils/error-handler";
 
 export const createPaymentMethodController = async (
   req: Request,
@@ -17,11 +18,7 @@ export const createPaymentMethodController = async (
       data: result,
     });
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      success: false,
-      message: "Internal server error",
-    });
+    return handleError(error, res);
   }
 };
 
@@ -37,10 +34,6 @@ export const getAllPaymentMethodsController = async (
       data: result,
     });
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      success: false,
-      message: "Internal server error",
-    });
+    return handleError(error, res);
   }
 };
