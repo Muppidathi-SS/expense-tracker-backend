@@ -10,8 +10,7 @@ export const createExpenseController = async (req: Request, res: Response) => {
       expense_date,
       expense_time,
       category_id,
-      expense_type,
-      expense_payment_method,
+      payment_method_id,
       expense_notes,
     } = req.body;
 
@@ -22,8 +21,7 @@ export const createExpenseController = async (req: Request, res: Response) => {
       expense_date,
       expense_time,
       category_id,
-      expense_type,
-      expense_payment_method,
+      payment_method_id,
       expense_notes,
     });
     return res.status(201).json({

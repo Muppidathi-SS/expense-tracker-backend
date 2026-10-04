@@ -5,9 +5,9 @@ export const CREATE_GUEST_QUERY = `
 `;
 
 export const CREATE_EXPENSE_QUERY = `
- INSERT INTO expenses (guest_id, expense_name, expense_amount, expense_date, expense_time, category_id, expense_type, expense_payment_method, expense_notes)
- VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
- RETURNING guest_id, expense_name, expense_amount, expense_date, expense_time, category_id, expense_type, expense_payment_method, expense_notes
+ INSERT INTO expenses (guest_id, expense_name, expense_amount, expense_date, expense_time, category_id, payment_method_id, expense_notes)
+ VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+ RETURNING *
 `;
 
 export const CREATE_CATEGORY = `

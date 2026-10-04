@@ -8,8 +8,7 @@ interface Expense {
   expense_date: string;
   expense_time: string;
   category_id: number;
-  expense_type: string;
-  expense_payment_method: number;
+  payment_method_id: number;
   expense_notes?: string;
 }
 
@@ -21,8 +20,7 @@ export const createExpense = async (expense: Expense) => {
     expense_date,
     expense_time,
     category_id,
-    expense_type,
-    expense_payment_method,
+    payment_method_id,
     expense_notes,
   } = expense;
 
@@ -33,8 +31,7 @@ export const createExpense = async (expense: Expense) => {
     expense_date,
     expense_time,
     category_id,
-    expense_type,
-    expense_payment_method,
+    payment_method_id,
     expense_notes ?? null,
   ]);
 
