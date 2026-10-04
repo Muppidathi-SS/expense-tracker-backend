@@ -21,3 +21,9 @@ export const CREATE_PAYMENT_METHOD_QUERY = `
  VALUES ($1, $2)
  RETURNING *
 `;
+
+export const CREATE_INCOME_QUERY = `
+ INSERT INTO incomes (guest_id, income_name, income_amount, income_date, income_time, category_id, payment_method_id, income_notes)
+ VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+ RETURNING *
+`;
