@@ -15,3 +15,9 @@ export const CREATE_CATEGORY = `
  VALUES($1, $2, $3)
  RETURNING *
 `;
+
+export const CREATE_PAYMENT_METHOD_QUERY = `
+ INSERT INTO payment_methods (guest_id, payment_method_name)
+ VALUES ($1, $2)
+ RETURNING *
+`;
