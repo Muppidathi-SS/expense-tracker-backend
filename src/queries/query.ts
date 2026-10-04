@@ -4,13 +4,7 @@ export const CREATE_GUEST_QUERY = `
   RETURNING guest_id, name
 `;
 
-export const CREATE_EXPENSE_QUERY = `
- INSERT INTO expenses (guest_id, expense_name, expense_amount, expense_date, expense_time, category_id, payment_method_id, expense_notes)
- VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
- RETURNING *
-`;
-
-export const CREATE_CATEGORY = `
+export const CREATE_CATEGORY_QUERY = `
  INSERT INTO categories (guest_id, category_name, category_description)
  VALUES($1, $2, $3)
  RETURNING *
@@ -19,6 +13,12 @@ export const CREATE_CATEGORY = `
 export const CREATE_PAYMENT_METHOD_QUERY = `
  INSERT INTO payment_methods (guest_id, payment_method_name)
  VALUES ($1, $2)
+ RETURNING *
+`;
+
+export const CREATE_EXPENSE_QUERY = `
+ INSERT INTO expenses (guest_id, expense_name, expense_amount, expense_date, expense_time, category_id, payment_method_id, expense_notes)
+ VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
  RETURNING *
 `;
 

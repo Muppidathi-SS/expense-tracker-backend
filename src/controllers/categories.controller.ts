@@ -11,7 +11,7 @@ export const createCategoryController = async (req: Request, res: Response) => {
     });
     return res.status(201).json({
       success: true,
-      message: "Guest created successfully",
+      message: "Category created successfully",
       data: result,
     });
   } catch (error) {

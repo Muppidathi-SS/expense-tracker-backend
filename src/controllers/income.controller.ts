@@ -26,7 +26,7 @@ export const createIncomeController = async (req: Request, res: Response) => {
     });
     return res.status(201).json({
       success: true,
-      message: "Guest created successfully",
+      message: "Income created successfully",
       data: result,
     });
   } catch (error) {

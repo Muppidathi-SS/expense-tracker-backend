@@ -1,16 +1,6 @@
 import pool from "../config/db";
 import { CREATE_EXPENSE_QUERY } from "../queries/query";
-
-interface Expense {
-  guest_id: string;
-  expense_name: string;
-  expense_amount: number;
-  expense_date: string;
-  expense_time: string;
-  category_id: number;
-  payment_method_id: number;
-  expense_notes?: string;
-}
+import { Expense } from "../types/expense.types";
 
 export const createExpense = async (expense: Expense) => {
   const {
