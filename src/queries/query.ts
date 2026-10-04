@@ -82,3 +82,17 @@ LEFT JOIN payment_methods pm
     ON i.payment_method_id = pm.payment_method_id
 WHERE i.guest_id = $1;
 `;
+
+export const GET_EXPENSE_BY_ID = `
+SELECT *
+FROM expenses
+WHERE guest_id = $1
+  AND expense_id = $2
+`;
+
+export const GET_INCOME_BY_ID = `
+SELECT *
+FROM incomes
+WHERE guest_id = $1
+  AND income_id = $2
+`;

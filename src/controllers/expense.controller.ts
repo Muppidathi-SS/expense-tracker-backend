@@ -1,5 +1,9 @@
 import { Request, Response } from "express";
-import { createExpense, getExpenses } from "../services/expense.service";
+import {
+  createExpense,
+  getExpenseById,
+  getExpenses,
+} from "../services/expense.service";
 import { handleError } from "../utils/error-handler";
 
 export const createExpenseController = async (req: Request, res: Response) => {
@@ -39,6 +43,23 @@ export const getExpensesController = async (req: Request, res: Response) => {
   const { guest_id } = req.params as { guest_id: string };
   try {
     const result = await getExpenses(guest_id);
+    return res.status(200).json({
+      success: true,
+      message: "Expenses fetched successfully",
+      data: result,
+    });
+  } catch (error) {
+    return handleError(error, res);
+  }
+};
+
+export const getExpenseByIdController = async (req: Request, res: Response) => {
+  const { guest_id, expense_id } = req.params as {
+    guest_id: string;
+    expense_id: string;
+  };
+  try {
+    const result = await getExpenseById(guest_id, expense_id);
     return res.status(200).json({
       success: true,
       message: "Expense fetched successfully",

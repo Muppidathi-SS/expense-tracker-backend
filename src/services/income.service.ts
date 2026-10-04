@@ -1,4 +1,8 @@
-import { CREATE_INCOME_QUERY, GET_INCOMES } from "../queries/query";
+import {
+  CREATE_INCOME_QUERY,
+  GET_INCOME_BY_ID,
+  GET_INCOMES,
+} from "../queries/query";
 import pool from "../config/db";
 import { Income } from "../types/income.types";
 
@@ -29,5 +33,10 @@ export const createIncome = async (income: Income) => {
 
 export const getIncomes = async (guest_id: string) => {
   const result = await pool.query(GET_INCOMES, [guest_id]);
+  return result.rows;
+};
+
+export const getIncomesById = async (guest_id: string, income_id: string) => {
+  const result = await pool.query(GET_INCOME_BY_ID, [guest_id, income_id]);
   return result.rows;
 };

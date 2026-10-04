@@ -1,5 +1,9 @@
 import { Request, Response } from "express";
-import { createIncome, getIncomes } from "../services/income.service";
+import {
+  createIncome,
+  getIncomes,
+  getIncomesById,
+} from "../services/income.service";
 import { handleError } from "../utils/error-handler";
 
 export const createIncomeController = async (req: Request, res: Response) => {
@@ -42,6 +46,23 @@ export const getIncomesController = async (req: Request, res: Response) => {
     return res.status(200).json({
       success: true,
       message: "Incomes fetched successfully",
+      data: result,
+    });
+  } catch (error) {
+    return handleError(error, res);
+  }
+};
+
+export const getIncomeByIdController = async (req: Request, res: Response) => {
+  const { guest_id, income_id } = req.params as {
+    guest_id: string;
+    income_id: string;
+  };
+  try {
+    const result = await getIncomesById(guest_id, income_id);
+    return res.status(200).json({
+      success: true,
+      message: "Income fetched successfully",
       data: result,
     });
   } catch (error) {

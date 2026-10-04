@@ -2,6 +2,7 @@ import { Router } from "express";
 import { createGuestController } from "../controllers/guest.controller";
 import {
   createExpenseController,
+  getExpenseByIdController,
   getExpensesController,
 } from "../controllers/expense.controller";
 import {
@@ -16,6 +17,7 @@ import {
 } from "../controllers/payment-methods.controller";
 import {
   createIncomeController,
+  getIncomeByIdController,
   getIncomesController,
 } from "../controllers/income.controller";
 
@@ -36,5 +38,7 @@ router.get(
 );
 router.get("/guests/:guest_id/expenses", getExpensesController);
 router.get("/guests/:guest_id/incomes", getIncomesController);
+router.get("/guests/:guest_id/expense/:expense_id", getExpenseByIdController);
+router.get("/guests/:guest_id/income/:income_id", getIncomeByIdController);
 
 export default router;
