@@ -8,6 +8,7 @@ import {
 import {
   createCategoryController,
   getAllCategoriesByGuestIdController,
+  getCategoryExpenseChartByGuestIdController,
   getAllCategoriesController,
 } from "../controllers/categories.controller";
 import {
@@ -40,5 +41,9 @@ router.get("/guests/:guest_id/expenses", getExpensesController);
 router.get("/guests/:guest_id/incomes", getIncomesController);
 router.get("/guests/:guest_id/expense/:expense_id", getExpenseByIdController);
 router.get("/guests/:guest_id/income/:income_id", getIncomeByIdController);
+router.get(
+  "/guests/:guest_id/category-expense-chart",
+  getCategoryExpenseChartByGuestIdController,
+);
 
 export default router;

@@ -96,3 +96,22 @@ FROM incomes
 WHERE guest_id = $1
   AND income_id = $2
 `;
+
+export const GET_CATEGORY_EXPENSE_CHART_QUERY = `
+SELECT
+  e.category_id,
+  c.category_name,
+  SUM(e.expense_amount) AS total,
+  ROUND(
+    SUM(e.expense_amount) * 100.0 /
+    SUM(SUM(e.expense_amount)) OVER (),
+    0
+  ) AS percentage
+FROM expenses e
+JOIN categories c
+  ON e.category_id = c.category_id
+WHERE e.guest_id = $1
+GROUP BY
+  e.category_id,
+  c.category_name
+`;

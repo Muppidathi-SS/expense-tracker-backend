@@ -3,6 +3,7 @@ import {
   CREATE_CATEGORY_QUERY,
   GET_ALL_CATEGORIES,
   GET_CATEGORIES_BY_GUEST_ID_QUERY,
+  GET_CATEGORY_EXPENSE_CHART_QUERY,
 } from "../queries/query";
 import { Category } from "../types/categories.types";
 
@@ -22,5 +23,10 @@ export const getAllCategories = async () => {
 
 export const getAllCategoriesByGuestId = async (guest_id: string) => {
   const result = await pool.query(GET_CATEGORIES_BY_GUEST_ID_QUERY, [guest_id]);
+  return result.rows;
+};
+
+export const getCategoryExpenseChartByGuestId = async (guets_id: string) => {
+  const result = await pool.query(GET_CATEGORY_EXPENSE_CHART_QUERY, [guets_id]);
   return result.rows;
 };
