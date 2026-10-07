@@ -14,8 +14,6 @@ app.use(express.json());
 
 console.log("SERVER FILE LOADED");
 
-
-
 app.use((req, res, next) => {
   console.log(`Request: ${req.method} ${req.originalUrl}`);
   next();
@@ -27,7 +25,6 @@ app.get("/", (req, res) => {
     message: "Expense Tracker API is running",
   });
 });
-
 
 app.use("/api", Routes);
 
@@ -43,6 +40,27 @@ const swaggerOptions = {
       version: "1.0.0",
       description: "Expense Tracker Backend API",
     },
+    tags: [
+      {
+        name: "Guests",
+      },
+      {
+        name: "Dashboard",
+      },
+      {
+        name: "Categories",
+      },
+
+      {
+        name: "Expenses",
+      },
+      {
+        name: "Payment Methods",
+      },
+      {
+        name: "Incomes",
+      },
+    ],
     servers: [
       {
         url: "http://localhost:5000",
