@@ -21,6 +21,10 @@ import {
   getIncomeByIdController,
   getIncomesController,
 } from "../controllers/income.controller";
+import {
+  getTotalExpensesByGuestIdController,
+  getTotalIncomesByGuestIdController,
+} from "../controllers/dashboard.controller";
 
 const router = Router();
 
@@ -44,6 +48,15 @@ router.get("/guests/:guest_id/income/:income_id", getIncomeByIdController);
 router.get(
   "/guests/:guest_id/category-expense-chart",
   getCategoryExpenseChartByGuestIdController,
+);
+
+router.get(
+  "/guests/:guest_id/total-expenses",
+  getTotalExpensesByGuestIdController,
+);
+router.get(
+  "/guests/:guest_id/total-incomes",
+  getTotalIncomesByGuestIdController,
 );
 
 export default router;

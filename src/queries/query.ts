@@ -115,3 +115,15 @@ GROUP BY
   e.category_id,
   c.category_name
 `;
+
+export const GET_TOTAL_EXPENSES_BY_GUEST_ID_QUERY = `
+  SELECT SUM(expense_amount) AS total_expenses
+  FROM expenses
+  WHERE guest_id = $1;
+`;
+
+export const GET_TOTAL_INCOMES_BY_GUEST_ID_QUERY = `
+  SELECT SUM(income_amount) AS total_incomes
+  FROM incomes
+  WHERE guest_id = $1;
+`;

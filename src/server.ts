@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import swaggerUi from "swagger-ui-express";
+import swaggerJsdoc from "swagger-jsdoc";
 import Routes from "./routes/routes";
 
 dotenv.config();
@@ -29,6 +31,31 @@ app.get("/", (req, res) => {
 
 app.use("/api", Routes);
 
+// ==========================
+// Swagger
+// ==========================
+
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Expense Tracker API",
+      version: "1.0.0",
+      description: "Expense Tracker Backend API",
+    },
+    servers: [
+      {
+        url: "http://localhost:5000",
+      },
+    ],
+  },
+
+  apis: ["./src/routes/*.ts", "./src/swagger/*.swagger.ts"],
+};
+
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use((req, res) => {
   console.log(`404: Route not found - ${req.method} ${req.originalUrl}`);
